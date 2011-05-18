@@ -69,6 +69,11 @@ sub process {
 	$var{'title'} = $post->getTitle;
 	$var{'username'} = $post->get("username");
 	$var{'synopsis'} = $post->get("synopsis");
+	$var{'userDefined1'} = $post->get("userDefined1");
+	$var{'userDefined2'} = $post->get("userDefined2");
+	$var{'userDefined3'} = $post->get("userDefined3");
+	$var{'userDefined4'} = $post->get("userDefined4");
+	$var{'userDefined5'} = $post->get("userDefined5");
 	$var{"url"}= $url;
 	$var{"rating_loop"} = \@rating_loop;
 	$var{"content"} = $post->formatContent;
