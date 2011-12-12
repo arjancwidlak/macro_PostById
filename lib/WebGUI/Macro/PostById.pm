@@ -74,22 +74,24 @@ sub process {
 	$var{"url"}= $url;
 	$var{"rating_loop"} = \@rating_loop;
 	$var{"content"} = $post->formatContent;
-    $var{"status"} = $post->getStatus;
-    $var{"thumbnail"} = $post->getThumbnailUrl;
+        $var{"status"} = $post->getStatus;
+        $var{"thumbnail"} = $post->getThumbnailUrl;
+        $var{"userId"} = $post->get("ownerUserId");
 
-    my $storage = $post->getStorageLocation;
-    ( $var{"image.url"}, $var{"image.size"} ) = getImageUrl( $storage );
+        my $storage = $post->getStorageLocation;
+        ( $var{"image.url"}, $var{"image.size"} ) = getImageUrl( $storage );
 
 	#$var{"dateSubmitted"} = $post->get("dateSubmitted");
 	$var{"dateSubmitted"} = $post->get("creationDate");
-    $var{"dateSubmitted.human"} = $session->datetime->epochToHuman( $post->get("creationDate") );
-    $var{"userProfile.url"} = $post->getPosterProfileUrl;
-    $var{"user.isVisitor"} = $post->get("ownerUserId") eq "1";
-    $var{"edit.url"} = $post->getEditUrl;
+        $var{"dateSubmitted.human"} = $session->datetime->epochToHuman( $post->get("creationDate") );
+        $var{"userProfile.url"} = $post->getPosterProfileUrl;
+        $var{"user.isVisitor"} = $post->get("ownerUserId") eq "1";
+        $var{"edit.url"} = $post->getEditUrl;
+  
 	my $controls = $session->icon->delete('func=delete',$post->get("url"),"Delete").$session->icon->edit('func=edit',$post->get("url"));
-    $var{'controls'} = $controls;
-    $var{"user.hasRead"} = $hasRead;
-    $var{"user.isPoster"} = $post->isPoster;
+        $var{'controls'} = $controls;
+        $var{"user.hasRead"} = $hasRead;
+        $var{"user.isPoster"} = $post->isPoster;
 
     $post->getTemplateMetadataVars(\%var);
 	if ($post->get("className") =~ /Thread/) {
